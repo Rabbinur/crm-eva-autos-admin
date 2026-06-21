@@ -1,136 +1,3 @@
-// "use client";
-
-// import { useCreateAreaMutation, useUpdateAreaMutation } from "@/components/Redux/RTK/distributorApiNode";
-// import { AnimatePresence, motion } from "framer-motion";
-// import { Plus } from "lucide-react";
-// import { useEffect, useState } from "react";
-
-// interface AreaModalProps {
-//     isOpen: boolean;
-//     onClose: () => void;
-//     initialData?: { id: string; name: string; note?: string; status: "Active" | "Inactive" };
-// }
-
-// export const AreaModal = ({ isOpen, onClose, initialData }: AreaModalProps) => {
-//     const [name, setName] = useState("");
-//     const [note, setNote] = useState("");
-//     const [createArea, { isLoading: isCreating }] = useCreateAreaMutation();
-//     const [updateArea, { isLoading: isUpdating }] = useUpdateAreaMutation();
-//     const [coverageRadius, setCoverageRadius] = useState(5);
-//     const [latitude, setLatitude] = useState(23.8103);
-//     const [longitude, setLongitude] = useState(90.4125);
-//     useEffect(() => {
-//         if (isOpen) {
-//             setName(initialData?.name || "");
-//             setNote(initialData?.note || "");
-//         }
-//     }, [isOpen, initialData]);
-
-//     const handleSave = async () => {
-//         if (!name.trim()) {
-//             alert("Area name is required");
-//             return;
-//         }
-
-//         try {
-//             if (initialData) {
-//                 await updateArea({
-//                     id: initialData.id,
-//                     data: { name, note }
-//                 }).unwrap();
-//             } else {
-//                 await createArea({ name, note }).unwrap();
-//             }
-//             onClose();
-//         } catch (err: any) {
-//             alert(err?.data?.message || "Failed to save area");
-//         }
-//     };
-
-//     const isSaving = isCreating || isUpdating;
-
-//     return (
-//         <AnimatePresence>
-//             {isOpen && (
-//                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-//                     {/* Backdrop */}
-//                     <motion.div
-//                         initial={{ opacity: 0 }}
-//                         animate={{ opacity: 1 }}
-//                         exit={{ opacity: 0 }}
-//                         onClick={onClose}
-//                         className="absolute inset-0 bg-[#001f3f]/40 backdrop-blur-sm"
-//                     />
-
-//                     {/* Modal Card */}
-//                     <motion.div
-//                         initial={{ scale: 0.9, opacity: 0, y: 20 }}
-//                         animate={{ scale: 1, opacity: 1, y: 0 }}
-//                         exit={{ scale: 0.9, opacity: 0, y: 20 }}
-//                         className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden p-8"
-//                     >
-//                         <div className="flex items-center justify-between mb-8">
-//                             <h2 className="text-xl font-black text-[#001f3f]">
-//                                 {initialData ? "Edit Area" : "Add New Area"}
-//                             </h2>
-//                             <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-//                                 <Plus size={20} className="rotate-45" />
-//                             </button>
-//                         </div>
-
-//                         <div className="space-y-6">
-//                             {/* Input Area */}
-//                             <div className="space-y-2">
-//                                 <label className="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">
-//                                     Area / Route Name <span className="text-red-500">*</span>
-//                                 </label>
-//                                 <input
-//                                     type="text"
-//                                     value={name}
-//                                     onChange={(e) => setName(e.target.value)}
-//                                     placeholder="Enter area name..."
-//                                     className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-50 focus:bg-white transition-all font-medium text-foreground"
-//                                     disabled={isSaving}
-//                                 />
-//                             </div>
-
-//                             {/* Textarea Area */}
-//                             <div className="space-y-2">
-//                                 <label className="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Notes (Optional)</label>
-//                                 <textarea
-//                                     rows={4}
-//                                     value={note}
-//                                     onChange={(e) => setNote(e.target.value)}
-//                                     placeholder="Any additional details..."
-//                                     className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-50 focus:bg-white transition-all font-medium resize-none text-foreground"
-//                                     disabled={isSaving}
-//                                 />
-//                             </div>
-
-//                             {/* Action Buttons */}
-//                             <div className="flex items-center gap-3 pt-4">
-//                                 <button
-//                                     onClick={onClose}
-//                                     disabled={isSaving}
-//                                     className="flex-1 py-4 rounded-2xl font-bold text-slate-500 hover:bg-slate-100 transition-all disabled:opacity-50"
-//                                 >
-//                                     Cancel
-//                                 </button>
-//                                 <button
-//                                     onClick={handleSave}
-//                                     disabled={isSaving}
-//                                     className="flex-1 py-4 bg-[#001f3f] text-white rounded-2xl font-bold shadow-lg shadow-blue-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
-//                                 >
-//                                     {isSaving ? "Saving..." : "Save Area"}
-//                                 </button>
-//                             </div>
-//                         </div>
-//                     </motion.div>
-//                 </div>
-//             )}
-//         </AnimatePresence>
-//     );
-// };
 
 "use client";
 
@@ -272,7 +139,7 @@ export const AreaModal = ({
     };
 
     return (<AnimatePresence>
-        {isOpen && (<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        {isOpen && (<div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
 
 
             <motion.div
@@ -299,7 +166,17 @@ export const AreaModal = ({
                     opacity: 0,
                     y: 20,
                 }}
-                className="relative w-full max-w-4xl bg-white rounded-[2rem] shadow-2xl overflow-hidden"
+                className="relative
+w-[98vw]
+max-w-7xl
+h-[95vh]
+bg-white
+rounded-2xl
+sm:rounded-3xl
+shadow-2xl
+overflow-hidden
+flex
+flex-col"
             >
                 <div className="p-5 sm:p-8 border-b">
                     <div className="flex items-center justify-between">
