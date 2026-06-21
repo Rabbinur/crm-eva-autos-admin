@@ -1,5 +1,3 @@
-"use server";
-import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
 import { authKey } from "./authKey";
 
@@ -22,12 +20,8 @@ export const userLogin = async (formData: FieldValues) => {
 
   const token = userInfo?.data?.token;
   console.log("user login token", token);
-  if (token) {
-    (await cookies()).set(authKey, token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
-    });
+  if (token && typeof window !== "undefined") {
+    document.cookie = `${authKey}=${token}; path=/; max-age=2592000; SameSite=Strict; Secure`;
   }
 
   return userInfo;

@@ -3,6 +3,7 @@ import { authKey } from "./authKey";
 import { deleteCookies } from "./deleteCookie";
 
 export const logoutUser = (router: AppRouterInstance, path: string = "/") => {
-  deleteCookies([authKey], path);
+  deleteCookies([authKey]);
+  router.push(path);
   router.refresh();
 };

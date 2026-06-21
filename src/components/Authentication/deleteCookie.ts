@@ -1,17 +1,7 @@
-"use server";
-
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
-export const deleteCookies = async (keys: string[], path?: string) => {
-  const cookieStore = cookies();
-
-  for (const key of keys) {
-    //@ts-ignore
-    cookieStore.delete(key);
-  }
-
-  if (path) {
-    redirect(path);
+export const deleteCookies = (keys: string[]) => {
+  if (typeof window !== "undefined") {
+    for (const key of keys) {
+      document.cookie = `${key}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict; Secure`;
+    }
   }
 };
