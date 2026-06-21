@@ -53,13 +53,13 @@ const LoginPage = () => {
           })
         );
         reset();
-        toast.success("Login Successfully", { id: toastId, duration: 2000 });
+        toast.success(res?.message || "Login Successfully", { id: toastId, duration: 2000 });
         setLoading(false);
         router.push("/dashboard");
         router.refresh();
       } else {
         toast.error(
-          res?.encoded?.error?.message || "Valid Information Provide!",
+          res?.message || "Valid Information Provide!",
           { id: toastId, duration: 2000 }
         );
         setLoading(false);
