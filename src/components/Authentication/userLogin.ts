@@ -4,8 +4,8 @@ import { FieldValues } from "react-hook-form";
 import { authKey } from "./authKey";
 
 export const userLogin = async (formData: FieldValues) => {
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL_NODE || 'http://localhost:5005/api/v1';
-  
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5005/api/v1';
+
   const res = await fetch(
     `${apiBase}/admin/login`,
     {

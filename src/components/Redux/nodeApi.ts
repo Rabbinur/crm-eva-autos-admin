@@ -4,7 +4,7 @@ import { baseQueryWithUnauthorizedHandler } from "./baseQueryWithUnauthorizedHan
 
 export const nodeApi = createApi({
   reducerPath: "nodeApi",
-  baseQuery: baseQueryWithUnauthorizedHandler(process.env.NEXT_PUBLIC_API_BASE_URL_NODE!),
+  baseQuery: baseQueryWithUnauthorizedHandler(process.env.NEXT_PUBLIC_API_BASE_URL!),
   tagTypes,
   endpoints: () => ({}),
 });

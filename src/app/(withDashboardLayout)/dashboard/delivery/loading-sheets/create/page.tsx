@@ -24,7 +24,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Circle, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import { ArrowLeft, Check, Loader2, Plus, Trash2 } from 'lucide-react';
+import { ArrowLeft, Check, Loader2, MapPin, Plus, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface LoadingItem {
