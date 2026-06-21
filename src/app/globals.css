@@ -1,0 +1,183 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Base colors */
+  --color-background: #ffffff;
+  --color-foreground: #1a1a1a;
+  --color-primary: #ef1f26;
+  /* Updated primary color */
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #1a1a1a;
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #000000;
+  --color-destructive: #e53935;
+  --color-destructive-foreground: #ffffff;
+  --color-muted: #ededed;
+  --color-muted-foreground: #666666;
+  --color-border: #e5e5e5;
+  --color-input: #f9f9f9;
+  --color-ring: #ef1f26;
+  /* Make ring consistent with primary */
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1a1a;
+
+  /* Sidebar colors */
+  --color-sidebar: #fafafa;
+  --color-sidebar-foreground: #1a1a1a;
+  --color-sidebar-primary: #ffe4e6;
+  --color-sidebar-primary-foreground: #1a1a1a;
+  --color-sidebar-accent: #e5e5e5;
+  --color-sidebar-accent-foreground: #1a1a1a;
+  --color-sidebar-border: #e5e5e5;
+  --color-sidebar-ring: #ef1f26;
+
+  /* Chart palette */
+  --color-chart-1: #ef1f26;
+  /* Updated chart primary */
+  --color-chart-2: #3949ab;
+  --color-chart-3: #43a047;
+  --color-chart-4: #fdd835;
+  --color-chart-5: #26c6da;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes caret-blink {
+
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+@utility animate-in {
+  animation: slide-in-from-top-2 0.2s ease-out;
+}
+
+@utility fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+@utility slide-in-from-top-2 {
+  animation: slide-in-from-top-2 0.2s ease-out;
+}
+
+@utility duration-200 {
+  animation-duration: 0.2s;
+}
+
+@utility duration-300 {
+  animation-duration: 0.3s;
+}
+
+@layer utilities {
+  @keyframes slide-in-from-top-2 {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 6px;
+  /* width of the scrollbar */
+  height: 10px;
+  /* height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+  /* track color */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a1a1aa;
+  /* scrollbar handle color */
+  border-radius: 8px;
+  border: 2px solid #f3f3f3;
+  /* optional padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #71717a;
+  /* hover color */
+}
+
+/* Print Overrides */
+@media print {
+  /* Hide sidebar, header, footer, and general buttons/selectors */
+  aside,
+  header,
+  nav,
+  footer,
+  button,
+  select,
+  input,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Reset layout constraints so page contents flows naturally across multiple sheets */
+  html,
+  body,
+  main,
+  .h-screen,
+  .overflow-hidden,
+  .overflow-y-auto {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* Keep PrintLayout container centered and styled */
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+}
